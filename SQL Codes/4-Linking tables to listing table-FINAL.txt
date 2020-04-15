@@ -1,0 +1,69 @@
+/*The following statements connect our small tables to our major table (listings)
+At the beginning, our listing table (major table) contained the id and related field for each 
+For importing our data to the database, we created all of our small tables 
+(whose primary keys are the foreign key of our transaction table) and imported their corresponding data.
+ We also created our transaction table. If this table is supposed to have a column named prop_id,
+ we also created a column named prop_name. Then we linked the data in the tables by putting a condition, as 
+stated in the following codes. At the end, we will drop the column prop_name from our transaction table.*/
+
+
+UPDATE abnb.listing
+SET transit_id = abnb.transit.transit_id
+FROM abnb.transit 
+WHERE abnb.transit.transit_type = abnb.listing.transit_type;
+
+
+UPDATE abnb.listing
+SET nhd_id = abnb.neighborhood.nhd_id
+FROM abnb.neighborhood 
+WHERE abnb.neighborhood.neighborhood_name = abnb.listing.neighborhood_name;
+
+UPDATE abnb.listing
+SET prop_id = abnb.property.prop_id
+FROM abnb.property 
+WHERE (abnb.property.prop_name = abnb.listing.prop_name) 
+AND (abnb.property.prop_type = abnb.listing.prop_type)
+AND (abnb.property.street = abnb.listing.street)
+AND (abnb.property.zipcode = abnb.listing.zipcode)
+AND (abnb.property.bathroom = abnb.listing.bathroom)
+AND (abnb.property.bedroom = abnb.listing.edroom);
+
+
+UPDATE abnb.real_estate
+SET nhd_id = abnb.neighborhood.nhd_id
+FROM abnb.neighborhood 
+WHERE abnb.neighborhood.neighborhood_name = abnb.real_estate.neighborhood_name;
+
+
+
+UPDATE abnb.listing
+SET price_id = abnb.price.price_id
+FROM abnb.price 
+WHERE (abnb.price.price = abnb.listing.price);
+
+
+UPDATE abnb.listing
+SET review_id = abnb.review.review_id
+FROM abnb.review 
+WHERE (abnb.review.number_of_reviews = abnb.listing.number_of_reviews) 
+AND (abnb.review.reviews_score_rating = abnb.listing.reviews_score_rating)
+AND (abnb.review.reviews_per_month = abnb.listing.reviews_per_month);
+
+
+UPDATE abnb.listing
+SET room_id = abnb.room_type.room_id
+FROM abnb.room_type 
+WHERE (abnb.room_type.room_type = abnb.listing.room_type) 
+AND (abnb.room_type.accomodates = abnb.listing.accomodates);
+
+
+UPDATE abnb.listing
+SET calendar_id = abnb.calendar.calendar_id
+FROM abnb.calendar 
+WHERE (abnb.calendar.availability_365 = abnb.listing.availability_365) 
+AND (abnb.calendar.availability_30 = abnb.listing.availability_30)
+AND (abnb.calendar.availability_60 = abnb.listing.availability_60)
+AND (abnb.calendar.availability_90 = abnb.listing.availability_90);
+
+
+

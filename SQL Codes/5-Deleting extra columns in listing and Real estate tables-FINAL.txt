@@ -1,0 +1,57 @@
+/*Based on our planned for creating the database (explained in file No3), it is the time to delete the extra coloumns 
+in listing table and Real estate table*/
+/*After this step, our database is ready to do the analysis*/
+
+ALTER TABLE abnb.listing
+DROP COLUMN neighborhood_name;
+
+ALTER TABLE abnb.listing
+DROP COLUMN prop_name;
+
+ALTER TABLE abnb.listing
+DROP COLUMN prop_type;
+
+ALTER TABLE abnb.listing
+DROP COLUMN street;
+
+ALTER TABLE abnb.listing
+DROP COLUMN zipcode;
+
+ALTER TABLE abnb.listing
+DROP COLUMN bathroom;
+
+ALTER TABLE abnb.listing
+DROP COLUMN edroom;
+
+ALTER TABLE abnb.listing
+DROP COLUMN transit_type;
+
+ALTER TABLE abnb.listing
+DROP COLUMN price;
+
+ALTER TABLE abnb.listing
+DROP COLUMN number_of_reviews;
+
+ALTER TABLE abnb.listing
+DROP COLUMN reviews_score_rating;
+
+ALTER TABLE abnb.listing
+DROP COLUMN reviews_per_month;
+
+ALTER TABLE abnb.listing
+DROP COLUMN room_type;
+
+ALTER TABLE abnb.listing
+DROP COLUMN accomodates;
+
+ALTER TABLE abnb.listing
+DROP COLUMN availability_365;
+
+ALTER TABLE abnb.listing
+DROP COLUMN availability_30;
+
+ALTER TABLE abnb.listing
+DROP COLUMN availability_60;
+
+ALTER TABLE abnb.listing
+DROP COLUMN availability_90;

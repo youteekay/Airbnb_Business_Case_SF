@@ -1,0 +1,103 @@
+/*The following statements are used to create our database, schema, and 10 tables*/
+
+CREATE DATABASE airbnb_investment_project
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+CREATE SCHEMA abnb
+    AUTHORIZATION postgres;
+
+CREATE TABLE abnb.PROPERTY(   
+	                          prop_id 	SERIAL             PRIMARY KEY,
+                              prop_name CHARACTER VARYING,
+                         	  prop_type	CHARACTER VARYING, 
+                    		  street    CHARACTER VARYING,
+                              zipcode 	CHARACTER VARYING,
+                              bathroom	NUMERIC,
+                              bedroom	NUMERIC
+                          );
+
+CREATE TABLE abnb.NEIGHBORHOOD(
+	                             nhd_id SERIAL	PRIMARY KEY,
+	                  neighborhood_name CHARACTER VARYING
+                              );
+
+CREATE TABLE abnb.HOST(
+	                    host_id INT		PRIMARY KEY,
+	                 host_since DATE,
+	        host_listings_count INT,
+	                  host_name CHARACTER VARYING
+	                   );
+
+CREATE TABLE abnb.TRANSIT(
+			         transit_id SERIAL PRIMARY KEY,
+			       transit_type CHARACTER VARYING
+                         );
+
+CREATE TABLE abnb.ROOM_TYPE(
+				        room_id SERIAL PRIMARY KEY,
+			          room_type TEXT,
+			        accomodates INTEGER
+                           );
+
+CREATE TABLE abnb.CALENDAR( 
+				calendar_id		SERIAL 		PRIMARY KEY,
+			availability_365	INTEGER,
+			availability_30		INTEGER,
+			availability_60 	INTEGER,
+			availability_90		INTEGER
+                          );
+
+CREATE TABLE abnb.PRICE(
+					   price_id SERIAL    PRIMARY KEY,
+					      price NUMERIC
+					   );
+
+CREATE TABLE abnb.REVIEW(
+					  review_id SERIAL             PRIMARY KEY,
+		      number_of_reviews INTEGER,
+		   reviews_score_rating INTEGER,
+			  reviews_per_month NUMERIC
+                         );
+
+CREATE TABLE abnb.LISTING(
+				 listing_id 	INTEGER            PRIMARY KEY,
+					host_id 	INTEGER			   REFERENCES abnb.HOST,
+					nhd_id		INTEGER 		   REFERENCES abnb.NEIGHBORHOOD,
+	          neighborhood_name CHARACTER VARYING, 
+					prop_id		INTEGER		   	   REFERENCES abnb.PROPERTY,
+	                  prop_name CHARACTER VARYING,
+                     prop_type	CHARACTER VARYING, 
+                      street    CHARACTER VARYING,
+                       zipcode 	CHARACTER VARYING,
+                       bathroom	NUMERIC,
+                         edroom	NUMERIC,
+					transit_id	INTEGER			   REFERENCES abnb.TRANSIT,
+	               transit_type CHARACTER VARYING,
+				    price_id	INTEGER 		   REFERENCES abnb.PRICE,
+	                      price NUMERIC,
+					review_id	INTEGER 		   REFERENCES abnb.REVIEW,
+	          number_of_reviews INTEGER,
+		   reviews_score_rating INTEGER,
+			  reviews_per_month NUMERIC,
+					room_id 	INTEGER			   REFERENCES abnb.ROOM_TYPE,
+	                  room_type TEXT,
+			        accomodates INTEGER,
+	                calendar_id INTEGER            REFERENCES abnb.CALENDAR,
+			availability_365	INTEGER,
+			availability_30		INTEGER,
+			availability_60 	INTEGER,
+			availability_90		INTEGER,
+		  neighborhood_overview CHARACTER VARYING,
+					lattitude	NUMERIC,
+				   longitude 	NUMERIC
+							);
+
+CREATE TABLE abnb.real_estate(
+	                             rhs_id SERIAL	PRIMARY KEY,
+	                             neighborhood_name CHARACTER VARYING,
+				     nhd_id INTEGER    REFERENCES abnb.neighborhood,
+					             price_2017 NUMERIC
+                              );

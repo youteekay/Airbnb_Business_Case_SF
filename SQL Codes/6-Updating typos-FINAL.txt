@@ -1,0 +1,8 @@
+/*When crearting tables we had some typos, and since we did not want to delete all the tables and create them again
+we are correcting them in this file.*/
+
+ALTER TABLE abnb.listing
+RENAME COLUMN lattitude TO latitude;
+
+ALTER TABLE abnb.real_estate
+RENAME COLUMN rhs_id TO re_id;

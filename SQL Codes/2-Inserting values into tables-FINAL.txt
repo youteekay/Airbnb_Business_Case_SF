@@ -1,0 +1,39 @@
+/*The following statements are used to import the csv files into the tables in our database*/
+/*To import the data csv files were copied in our pgadmin folder and then the following syntax were run*/
+/*Please change the path for csv files based on your folder's path*/
+/*The structure of the csv files was exactly the same as our tables in the database*/
+/*The name of columns and the order of columns in csv files were exactly the same as tables in our database*/
+/*The following codes copies the mentioned columns from csv files into the tables in database*/
+/*Delimiter shows how the data were separated in the csv file.*/
+/*Header shows that the first row of our csv file contains the header*/  
+
+
+COPY abnb.calendar (availability_365, availability_30, availability_60, availability_90) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\calendar.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.host (host_id,host_name,host_since,host_listings_count) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\host.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.neighborhood (neighborhood_name) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\neighborhood.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.property (prop_name,prop_type,street,zipcode,bathroom,bedroom) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\property.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.review (number_of_reviews,reviews_score_rating,reviews_per_month) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\review.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.transit (transit_type) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\transit.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.price (price) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\price.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.room_type (room_type,accomodates) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\room.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.listing (listing_id,host_id,nhd_id,neighborhood_name,prop_id,prop_name,prop_type,street,zipcode,bathroom,edroom,transit_id,transit_type,price_id,price,review_id,number_of_reviews,reviews_score_rating,reviews_per_month,room_id,room_type,accomodates,calendar_id,availability_30,availability_60,availability_90,availability_365,neighborhood_overview,lattitude,longitude) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\listing.csv' DELIMITER ',' CSV HEADER;
+
+COPY abnb.real_estate (neighborhood_name, nhd_id,price_2017) 
+FROM 'C:\Program Files (x86)\pgAdmin 4\realestate.csv' DELIMITER ',' CSV HEADER;
